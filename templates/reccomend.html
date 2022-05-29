@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<title>Document</title>
+	<style>
+		.container {
+			position: absolute;
+			margin: auto;
+			top: -73vh;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			width: 300px;
+			height: 50px;
+		}
+       
+
+
+	#title {
+		        list-style: none;
+				position: absolute;
+				width: 466px;
+				height: 34px;
+				left: 136px;
+				top: 300px;
+                color: white;
+				font-family: 'Inter';
+				font-style: normal;
+				font-weight: 400;
+				font-size: 28px;
+				line-height: 34px;
+				margin-bottom: 40px;
+
+
+		}
+
+		
+
+
+
+		
+
+		
+
+		.container .search {
+			position: absolute;
+			margin: auto;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			width: 80px;
+			height: 80px;
+			background: black;
+			border-radius: 50%;
+			transition: all 1s;
+			z-index: 4;
+			box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.4);
+		}
+
+		.button-container .search:hover {
+			cursor: pointer;
+		}
+
+		.container .search::before {
+			content: '';
+			position: absolute;
+			margin: auto;
+			top: 22px;
+			right: 0;
+			bottom: 0;
+			left: 22px;
+			width: 12px;
+			height: 2px;
+			background: white;
+			transform: rotate(45deg);
+			transition: all 0.5s;
+		}
+
+		.container::after {
+			content: '';
+			position: absolute;
+			margin: auto;
+			top: -5px;
+			right: 0;
+			bottom: 0;
+			left: -5px;
+			width: 25px;
+			height: 25px;
+			border-radius: 50%;
+			border: 2px solid white;
+			transition: all 0.5s;
+		}
+		.search::after {
+			content: '';
+			position: absolute;
+			margin: auto;
+			top: -5px;
+			right: 0;
+			bottom: 0;
+			left: -5px;
+			width: 25px;
+			height: 25px;
+			border-radius: 50%;
+			border: 2px solid white;
+			transition: all 0.5s;
+		}
+		.container input {
+			font-family: 'Nunito', sans-serif;
+			position: absolute;
+			margin: auto;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			width: 50px;
+			height: 50px;
+			outline: none;
+			border: none;
+			background: white;
+			color: black;
+			/* text-shadow: 0 0 10px white; */
+			padding: 0 80px 0 20px;
+			border-radius: 30px;
+			box-shadow: white, 0 20px 25px 0 rgba(0, 0, 0, 0.2);
+			transition: all 1s;
+			opacity: 0;
+			z-index: 5;
+			font-weight: bolder;
+			letter-spacing: 0.1em;
+		}
+
+		.container input:hover {
+			cursor: pointer;
+		}
+
+		.container input:focus {
+			width: 300px;
+			opacity: 1;
+			cursor: text;
+		}
+
+		.container input:focus~.search {
+			right: -500px;
+			background: #F2BB1F;
+			z-index: 6;
+		}
+
+		.container input:focus~.search::before {
+			top: 0;
+			left: 0;
+			width: 25px;
+		}
+
+		.container input:focus~.search::after {
+			top: 0;
+			left: 0;
+			width: 20px;
+			height: 2px;
+			border: none;
+			background: white;
+			border-radius: 0%;
+			transform: rotate(-45deg);
+		}
+
+		.container input::placeholder {
+			color: #F2BB1F;
+			opacity: 0.5;
+			font-weight: bolder;
+		}
+
+		.final {
+			position: absolute;
+			width: 244px;
+			height: 39px;
+			left: 120px;
+			top: 100px;
+
+			font-family: 'Inter';
+			font-style: normal;
+			font-weight: 500;
+			font-size: 32px;
+			line-height: 39px;
+			/* identical to box height */
+
+
+			color: #F2BB1F;
+
+
+		}
+
+		.yes {
+			position: absolute;
+			width: 48px;
+			height: 48px;
+			left: 945px;
+			top: 128px;
+
+			background: #F2BB1F;
+			box-shadow: 0px 2px 6px 2px rgba(0, 0, 0, 0.3);
+		}
+
+		
+	</style>
+</head>
+
+<body style="background: #161616;position: absolute;
+width: 1440px;
+height: 1024px;
+left: 0px;
+top: 0px;">
+	<form name="movie">
+		<div class="container">
+			<input type="text" placeholder="Search..." id="search_box">
+
+			<div class="search"></div>
+		</div>
+
+	</form>
+
+	
+	<div 
+	id="title">
+	</div>
+	
+
+	<h1 class="final">Search Results</h1>
+</body>
+<script>
+	$(document).ready(function () {
+		function SendData() {
+			var moviename = $('#search_box').val();
+			var sendData = { movie: moviename }
+			$.ajax({
+				url: "http://localhost:5000/finalresult",
+				type: "POST",
+				data: JSON.stringify(sendData),
+				dataType: 'json',
+				contentType: "application/json; charset=utf-8",
+				success: function (data) {
+					var nHTML = '';
+					var total_data = data;
+					total_data.forEach(function (item) {
+						nHTML += '<div style="color=white;background: #3D3D3D;padding:12px;margin:12px;width: 1211px;height: 54px;">' + item + '</div>';
+						
+					});
+					document.getElementById("title").innerHTML = '<div style="margin-bottom:40px;">' + nHTML + '</div>'
+				},
+				error: function () {
+					alert("failure");
+				}
+			});
+		}
+
+		$("#search_box").keypress(function (event) {
+			if (event.which == 13) {
+				event.preventDefault();
+				SendData();
+			}
+		});
+	});
+</script>
+
+</html>

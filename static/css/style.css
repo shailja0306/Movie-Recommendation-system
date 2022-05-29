@@ -1,0 +1,198 @@
+
+
+@import url('https://fonts.googleapis.com/css?family=Inconsolata:700');
+
+
+
+
+.main{
+    position: absolute;
+width: 346px;
+height: 46px;
+left: 547px;
+top: 220px;
+
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 700;
+font-size: 38px;
+line-height: 46px;
+
+color: #F2BB1F;
+
+}
+
+
+
+.slogan{
+    position: absolute;
+    width: 574px;
+    height: 48px;
+    left: 433px;
+    top: 302px;
+    
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    text-align: center;
+    
+    color: #FFFFFF;
+    
+}
+.start{
+    position: absolute;
+width: 240px;
+height: 72px;
+left: 600px;
+top: 448px;
+
+background: #F2BB1F;
+box-shadow: 0px 2px 6px 2px #161616;
+border-radius: 8px;
+
+}
+.container {
+	position: absolute;
+	margin: auto;
+	top: -73vh;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 300px;
+	height: 50px;
+}
+
+.container .search {
+	position: absolute;
+	margin: auto;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	width: 80px;
+	height: 80px;
+	background: black;
+	border-radius: 50%;
+	transition: all 1s;
+	z-index: 4;
+	box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.4);
+}
+
+.button-container .search:hover {
+	cursor: pointer;
+}
+
+.container .search::before {
+	content: '';
+	position: absolute;
+	margin: auto;
+	top: 22px;
+	right: 0;
+	bottom: 0;
+	left: 22px;
+	width: 12px;
+	height: 2px;
+	background: white;
+	transform: rotate(45deg);
+	transition: all 0.5s;
+}
+
+.container .search::after {
+	content: '';
+	position: absolute;
+	margin: auto;
+	top: -5px;
+	right: 0;
+	bottom: 0;
+	left: -5px;
+	width: 25px;
+	height: 25px;
+	border-radius: 50%;
+	border: 2px solid white;
+	transition: all 0.5s;
+}
+
+.container input {
+	font-family: 'Nunito', sans-serif;
+	position: absolute;
+	margin: auto;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	width: 50px;
+	height: 50px;
+	outline: none;
+	border: none;
+	background: white;
+	color: black;
+	/* text-shadow: 0 0 10px white; */
+	padding: 0 80px 0 20px;
+	border-radius: 30px;
+	box-shadow: white, 0 20px 25px 0 rgba(0, 0, 0, 0.2);
+	transition: all 1s;
+	opacity: 0;
+	z-index: 5;
+	font-weight: bolder;
+	letter-spacing: 0.1em;
+}
+
+.container input:hover {
+	cursor: pointer;
+}
+
+.container input:focus {
+	width: 300px;
+	opacity: 1;
+	cursor: text;
+}
+
+.container input:focus ~ .search {
+	right: -250px;
+	background: #F2BB1F;
+	z-index: 6;
+}
+
+.container input:focus ~ .search::before {
+	top: 0;
+	left: 0;
+	width: 25px;
+}
+
+.container input:focus ~ .search::after {
+	top: 0;
+	left: 0;
+	width: 20px;
+	height: 2px;
+	border: none;
+	background: white;
+	border-radius: 0%;
+	transform: rotate(-45deg);
+}
+
+.container input::placeholder {
+	color: #F2BB1F;
+	opacity: 0.5;
+	font-weight: bolder;
+}
+.final{
+    position: absolute;
+width: 244px;
+height: 39px;
+left: 120px;
+top: 220px;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 500;
+font-size: 32px;
+line-height: 39px;
+/* identical to box height */
+
+
+color: #F2BB1F;
+
+
+}
